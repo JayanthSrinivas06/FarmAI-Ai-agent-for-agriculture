@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RakiCrops – AI Crop Advisor</title>
+  <meta name="description" content="AI-powered crop prediction and personalized agriculture plan generator for Andhra Pradesh & Telangana farmers." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════ HEADER ═══════════════════════ -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <span class="logo-icon">🌾</span>
+      <span class="logo-text">RakiCrops<span class="logo-ai"> AI</span></span>
+    </div>
+    <nav class="header-nav">
+      <a href="#predictor">Predictor</a>
+      <a href="#how-it-works">How it works</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🤖 Powered by Gemini AI</div>
+    <h1 class="hero-title">Smart Crop Prediction<br /><span class="gradient-text">& Farming Advisor</span></h1>
+    <p class="hero-subtitle">
+      Enter your field's environmental data, get instant crop recommendations from our trained ML model,
+      then let the AI agent craft a complete agriculture plan — including harvest timeline and market price forecast.
+    </p>
+    <a href="#predictor" class="btn-primary">Start Predicting ↓</a>
+  </div>
+  <div class="hero-float-cards">
+    <div class="float-card fc1">🌡️ Temperature Analysis</div>
+    <div class="float-card fc2">💧 Rainfall Patterns</div>
+    <div class="float-card fc3">🌱 Soil Intelligence</div>
+    <div class="float-card fc4">📈 Price Forecast</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ HOW IT WORKS ═══════════════════════ -->
+<section class="how-it-works" id="how-it-works">
+  <div class="container">
+    <div class="section-header">
+      <h2>How It Works</h2>
+      <p>Three simple steps to a complete farming strategy</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">01</div>
+        <div class="step-icon">📋</div>
+        <h3>Enter Field Data</h3>
+        <p>Provide your district, season, soil parameters, rainfall, temperature, and more.</p>
+      </div>
+      <div class="step-connector">→</div>
+      <div class="step">
+        <div class="step-number">02</div>
+        <div class="step-icon">🤖</div>
+        <h3>ML Prediction</h3>
+        <p>Our Random Forest model analyses your data and recommends the top 5 crops for your conditions.</p>
+      </div>
+      <div class="step-connector">→</div>
+      <div class="step">
+        <div class="step-number">03</div>
+        <div class="step-icon">📊</div>
+        <h3>AI Farming Plan</h3>
+        <p>Select any recommended crop; Gemini AI generates a complete plan, timeline, and price forecast.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ PREDICTOR ═══════════════════════ -->
+<section class="predictor-section" id="predictor">
+  <div class="container">
+    <div class="section-header">
+      <h2>Crop Predictor</h2>
+      <p>Fill in your field's parameters below</p>
+    </div>
+
+    <div class="predictor-layout">
+      <!-- ── FORM ── -->
+      <div class="form-card glass">
+        <form id="predictForm" novalidate>
+
+          <!-- Row 1 -->
+          <div class="form-grid">
+            <div class="field-group">
+              <label for="district">District</label>
+              <select id="district" name="district" required>
+                <option value="">Loading districts…</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label for="season">Season</label>
+              <select id="season" name="season">
+                <option value="Kharif">Kharif (Jun – Nov)</option>
+                <option value="Rabi">Rabi (Nov – Apr)</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label for="year">Year</label>
+              <input type="number" id="year" name="year" value="2024" min="2019" max="2030" />
+            </div>
+          </div>
+
+          <!-- Row 2 – Vegetation & Water -->
+          <div class="fieldset-label">🌿 Vegetation &amp; Water</div>
+          <div class="form-grid">
+            <div class="field-group">
+              <label for="NDVI_mean">NDVI Mean <span class="hint">–1 to 1</span></label>
+              <input type="number" id="NDVI_mean" name="NDVI_mean" step="0.001" value="0.39" min="-1" max="1" />
+            </div>
+            <div class="field-group">
+              <label for="rain">Rainfall <span class="hint">mm</span></label>
+              <input type="number" id="rain" name="rain" step="0.1" value="530" min="0" />
+            </div>
+            <div class="field-group">
+              <label for="evapotranspiration">Evapotranspiration</label>
+              <input type="number" id="evapotranspiration" name="evapotranspiration" step="0.001" value="0.05" min="0" />
+            </div>
+          </div>
+
+          <!-- Row 3 – Terrain -->
+          <div class="fieldset-label">⛰️ Terrain</div>
+          <div class="form-grid">
+            <div class="field-group">
+              <label for="elevation">Elevation <span class="hint">m</span></label>
+              <input type="number" id="elevation" name="elevation" step="1" value="255" min="0" />
+            </div>
+            <div class="field-group">
+              <label for="slope">Slope</label>
+              <input type="number" id="slope" name="slope" step="0.001" value="0.65" min="0" />
+            </div>
+            <div class="field-group">
+              <label for="temp">Temperature <span class="hint">°C</span></label>
+              <input type="number" id="temp" name="temp" step="0.1" value="26" min="0" max="60" />
+            </div>
+          </div>
+
+          <!-- Row 4 – Soil -->
+          <div class="fieldset-label">🌍 Soil</div>
+          <div class="form-grid">
+            <div class="field-group">
+              <label for="soil_ph">Soil pH</label>
+              <input type="number" id="soil_ph" name="soil_ph" step="0.1" value="6.5" min="0" max="14" />
+            </div>
+            <div class="field-group">
+              <label for="soil_carbon">Soil Carbon</label>
+              <input type="number" id="soil_carbon" name="soil_carbon" step="0.1" value="23" min="0" />
+            </div>
+            <div class="field-group">
+              <label for="soil_texture">Soil Texture <span class="hint">1–5</span></label>
+              <input type="number" id="soil_texture" name="soil_texture" step="1" value="3" min="1" max="5" />
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary btn-full" id="predictBtn">
+            <span class="btn-text">🔍 Predict Crops</span>
+            <span class="btn-spinner hidden" id="predictSpinner">⏳</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- ── RESULTS ── -->
+      <div class="results-panel">
+        <div id="resultsPlaceholder" class="results-placeholder">
+          <div class="placeholder-icon">🌾</div>
+          <p>Your crop recommendations will appear here after prediction.</p>
+        </div>
+
+        <div id="resultsContent" class="hidden">
+          <h3 class="results-title">Top 5 Recommended Crops</h3>
+          <p class="results-sub">Click on any crop to generate an AI farming plan 👇</p>
+          <div id="cropList" class="crop-list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ AI PLAN MODAL ═══════════════════════ -->
+<div id="planModal" class="modal hidden">
+  <div class="modal-backdrop" id="modalBackdrop"></div>
+  <div class="modal-box">
+    <div class="modal-header">
+      <div>
+        <div class="modal-crop-badge" id="modalCropBadge">🌾</div>
+        <h2 class="modal-title" id="modalTitle">Agriculture Plan</h2>
+      </div>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <div class="plan-loading" id="planLoading">
+        <div class="spinner-ring"></div>
+        <p>Gemini AI is crafting your personalised farming plan…</p>
+      </div>
+      <div id="planContent" class="plan-content hidden"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <p>🌾 RakiCrops AI · Smart Agriculture for Andhra Pradesh &amp; Telangana</p>
+    <p class="footer-sub">Powered by Random Forest ML + Google Gemini AI</p>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
